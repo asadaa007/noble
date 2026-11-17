@@ -1,0 +1,4 @@
+'use client';
+import { useEffect, useRef, type ReactNode } from 'react';
+import { X } from 'lucide-react';
+export function Modal({open,onClose,title,children,wide=false}:{open:boolean;onClose:()=>void;title:string;children:ReactNode;wide?:boolean}){const ref=useRef<HTMLDialogElement>(null);useEffect(()=>{const d=ref.current;if(open){d?.showModal();const prev=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{document.body.style.overflow=prev;d?.close();};}else d?.close();},[open]);return <dialog ref={ref} aria-label={title} className={`modal ${wide?'modal-wide':''}`} onCancel={onClose} onClick={e=>{if(e.target===e.currentTarget){const b=e.currentTarget.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)onClose();}}}><button onClick={onClose} className="modal-close icon-button" aria-label="Close dialog"><X size={20}/></button>{children}</dialog>;}

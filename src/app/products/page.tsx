@@ -1,0 +1,5 @@
+import type { Metadata } from 'next';
+import { PageIntro,CTA,Eyebrow } from '@/components/ui';
+import { Catalogue, TechnologyTabs } from '@/components/catalogue';
+export const metadata:Metadata={title:'Equipment catalogue',description:'Explore cooling, air-side, heating, controls and fire protection equipment. Build a shortlist for your project.',alternates:{canonical:'/products'}};
+export default function Products(){return <><PageIntro eyebrow="Equipment catalogue" title={<>Technology that fits.<br/><span className="text-accent">Not just equipment.</span></>} description="Explore the systems, understand the possibilities, and build a shortlist around your project. Final manufacturers and specifications are selected to suit the brief."/><section className="section-small"><div className="container"><Catalogue/></div></section><section className="section section-white"><div className="container"><Eyebrow>Technology in focus</Eyebrow><h2>Different ways to cool.<br/>One informed choice.</h2><TechnologyTabs/></div></section><CTA/></>;}

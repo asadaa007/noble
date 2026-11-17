@@ -1,0 +1,13 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {products,filterProducts,guideSlugs} from '../src/lib/products';
+import {projects,filterProjects} from '../src/lib/projects';
+import {validateEnquiry,enquiryBrief} from '../src/lib/enquiry';
+import {parseShortlist} from '../src/lib/shortlist';
+const valid={name:' Test Person ',email:'test@example.com',message:'Please discuss ventilation for a new office building.',phone:'',organisation:'',city:'Lahore',services:['hvac-services'],products:['ahu'],consent:true,website:''};
+test('catalogue combines category, brand and search rather than ignoring a filter',()=>{assert.deepEqual(filterProducts(products,'centrifugal','Chillers','Project-selected').map(p=>p.id),['centrifugal']);assert.equal(filterProducts(products,'centrifugal','Fire safety','All manufacturers').length,0);assert.equal(filterProducts(products,'','All equipment','unknown').length,0);assert.equal(filterProducts(products,'','All equipment','All manufacturers').length,20)});
+test('equipment and guides have unique, resolvable IDs',()=>{assert.equal(new Set(products.map(p=>p.id)).size,products.length);for(const slug of guideSlugs)assert.ok(products.some(p=>p.guide===slug))});
+test('project filters and capacity sorting compose without changing source order',()=>{const before=projects.map(p=>p.id);const result=filterProjects(projects,'','Healthcare','All','capacity-desc');assert.deepEqual(result.map(p=>p.capacity),[600,180]);assert.equal(filterProjects(projects,'','Healthcare','Karachi','name').length,0);assert.deepEqual(projects.map(p=>p.id),before)});
+test('corrupt and stale shortlist values are harmless',()=>{assert.deepEqual(parseShortlist('invalid'),[]);assert.deepEqual(parseShortlist('{"id":"ahu"}'),[]);assert.deepEqual(parseShortlist('["ahu","ahu","unknown",null,5]'),['ahu'])});
+test('enquiry validation trims data and rejects invalid or oversized fields',()=>{assert.equal(validateEnquiry(valid).data?.name,'Test Person');const invalid=validateEnquiry({...valid,email:'bad',message:'short',name:'x'.repeat(101),consent:false,products:['invented']});assert.deepEqual(Object.keys(invalid.errors).sort(),['consent','email','message','name','products']);assert.equal(validateEnquiry(null).data,undefined);assert.equal(validateEnquiry({...valid,services:'hvac-services'}).data,undefined)});
+test('download brief uses readable equipment and service labels',()=>{const brief=enquiryBrief(valid);assert.match(brief,/Air handling units/);assert.match(brief,/ventilation/);assert.match(brief,/not a confirmed quotation/)});

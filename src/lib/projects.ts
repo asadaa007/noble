@@ -1,0 +1,16 @@
+export type Project = {id:string;name:string;sector:string;city:string;capacity:number;image:string;summary:string;scope:string[]};
+export const sectors = ['Commercial','Healthcare','Industrial','Hospitality'];
+// Demonstration records. These are NOT completed company projects or client claims.
+export const projects:Project[] = [
+ {id:'office',name:'A connected workplace',sector:'Commercial',city:'Lahore',capacity:400,image:'/images/interior.jpg',summary:'A sample brief for a multi-floor office, bringing comfort, lighting and building controls into one coordinated plan.',scope:['Zoned comfort cooling','Electrical distribution','Building monitoring']},
+ {id:'hospital',name:'Spaces for better care',sector:'Healthcare',city:'Islamabad',capacity:600,image:'/images/building.jpg',summary:'An illustrative healthcare brief focused on ventilation zoning, dependable utilities and maintainable plant.',scope:['Ventilation zoning','Critical-load coordination','Water services']},
+ {id:'production',name:'Made for production',sector:'Industrial',city:'Karachi',capacity:850,image:'/images/industrial.jpg',summary:'A sample industrial facility with process cooling, ventilation and utility distribution requirements.',scope:['Process cooling interfaces','Industrial ventilation','Utility distribution']},
+ {id:'hotel',name:'Comfort around the clock',sector:'Hospitality',city:'Peshawar',capacity:250,image:'/images/architecture.jpg',summary:'An illustrative hotel brief balancing guest-room control, shared spaces and hot-water demand.',scope:['Room-level controls','Hot-water systems','Life-safety coordination']},
+ {id:'retail',name:'Room for everyday life',sector:'Commercial',city:'Karachi',capacity:500,image:'/images/building.jpg',summary:'A sample mixed-use destination with varied occupancy, operating hours and tenant requirements.',scope:['Central cooling','Tenant metering','Fire protection']},
+ {id:'laboratory',name:'Control in every detail',sector:'Healthcare',city:'Lahore',capacity:180,image:'/images/interior.jpg',summary:'An illustrative diagnostic facility where environmental requirements guide equipment and zoning decisions.',scope:['Temperature and humidity control','Extract ventilation','BMS integration']},
+ {id:'warehouse',name:'A more capable workspace',sector:'Industrial',city:'Peshawar',capacity:120,image:'/images/industrial.jpg',summary:'A sample logistics facility coordinating occupied areas, utility routes and service access.',scope:['Ventilation','Lighting distribution','Fire protection']},
+ {id:'residence',name:'A considered welcome',sector:'Hospitality',city:'Islamabad',capacity:320,image:'/images/architecture.jpg',summary:'An illustrative serviced residence with individual comfort control and coordinated common services.',scope:['VRF system coordination','Domestic water','Common-area controls']},
+];
+export function filterProjects(items:Project[],query:string,sector:string,city:string,sort:string){
+ return items.filter(p=>(sector==='All'||p.sector===sector)&&(city==='All'||p.city===city)&&`${p.name} ${p.city} ${p.sector} ${p.scope.join(' ')}`.toLowerCase().includes(query.trim().toLowerCase())).sort((a,b)=>sort==='capacity-desc'?b.capacity-a.capacity:sort==='capacity-asc'?a.capacity-b.capacity:a.name.localeCompare(b.name));
+}
