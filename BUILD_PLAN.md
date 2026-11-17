@@ -105,3 +105,8 @@ Local implementation complete. No site has been published. Final logo, verified 
 - Add the confirmed WhatsApp contact to the contact page, verify mobile/keyboard behavior and correct destination, then review this plan.
 
 - WhatsApp review: production build/TypeScript passed. Browser verified correct recipient 923457163313, URL-encoded editable message, Escape close, and mobile fit at 390px with no overflow. Screenshot: `qa/whatsapp-widget.jpg`. This is click-to-chat; visitors send from WhatsApp. No test message was sent.
+
+## Follow-up: WhatsApp brand icon
+- Replace the generic message bubble with a scalable WhatsApp logo in the floating launcher and chat header. Keep the close control and existing chat behavior.
+
+- Review complete: TypeScript passed; browser verified the WhatsApp mark in the launcher and expanded chat header.

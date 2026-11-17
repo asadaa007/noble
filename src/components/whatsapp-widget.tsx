@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, MessageCircle, X } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
+import { WhatsAppIcon } from './whatsapp-icon';
 import { company } from '@/lib/company';
 
 export function WhatsAppWidget() {
@@ -38,7 +39,7 @@ export function WhatsAppWidget() {
   return <div className="whatsapp-widget">
     {open && <div ref={panel} className="whatsapp-panel" id="whatsapp-panel" role="dialog" aria-labelledby="whatsapp-heading">
       <div className="whatsapp-panel-header">
-        <span className="whatsapp-avatar"><MessageCircle size={24} aria-hidden="true" /></span>
+        <span className="whatsapp-avatar"><WhatsAppIcon size={24} aria-hidden="true" /></span>
         <div><h2 id="whatsapp-heading">Noble MEP Solutions</h2><p>Let’s talk about your project</p></div>
         <button ref={close} type="button" className="whatsapp-close" aria-label="Close WhatsApp chat" onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={19} /></button>
       </div>
@@ -52,7 +53,7 @@ export function WhatsAppWidget() {
       </div>
     </div>}
     <button ref={trigger} type="button" className="whatsapp-launcher" aria-label={open ? 'Close WhatsApp chat' : 'Open WhatsApp chat'} aria-expanded={open} aria-controls="whatsapp-panel" onClick={() => setOpen(value => !value)}>
-      {open ? <X size={25} aria-hidden="true" /> : <MessageCircle size={27} aria-hidden="true" />}
+      {open ? <X size={25} aria-hidden="true" /> : <WhatsAppIcon size={28} aria-hidden="true" />}
     </button>
   </div>;
 }
