@@ -93,3 +93,9 @@ Illustrative architectural photography from Unsplash, downloaded locally for thi
 - `industrial.jpg`: https://images.unsplash.com/photo-1581094794329-c8112a89af12
 
 These images do not depict verified Noble projects. Technical SVG drawings are original schematic illustrations. DM Sans and Manrope are installed font packages; Lucide supplies UI icons.
+
+## WhatsApp chat
+
+The floating chat widget appears on every page and opens a conversation with the confirmed business number **+92 345 7163313**. Visitors can edit a draft, continue to WhatsApp and send it there. No WhatsApp API credentials are needed, and no message is sent automatically. The contact page also provides a direct link. Override the number with `NEXT_PUBLIC_WHATSAPP` and rebuild when changing it. The widget does not store drafts or load third-party chat scripts.
+
+Implementation follows [WhatsApp click-to-chat documentation](https://faq.whatsapp.com/5913398998672934).

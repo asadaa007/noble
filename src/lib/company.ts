@@ -5,7 +5,7 @@ export const company = {
   incorporated: '10 November 2026',
   email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || '',
   phone: process.env.NEXT_PUBLIC_COMPANY_PHONE || '',
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '923457163313',
   address: process.env.NEXT_PUBLIC_COMPANY_ADDRESS || '',
   mapUrl: process.env.NEXT_PUBLIC_MAP_URL || '',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',

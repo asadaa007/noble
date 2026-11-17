@@ -98,3 +98,10 @@ An architectural editorial aesthetic: warm ivory backgrounds, deep forest green,
 
 ## Handoff status
 Local implementation complete. No site has been published. Final logo, verified contact channels, actual project records, manufacturer relationships, company approval of service copy/legal drafts and a real delivery endpoint remain launch dependencies. Successful external delivery has not been tested because no destination or credentials were supplied. Demo projects remain prominently labelled illustrative, and indexing is disabled by default.
+
+## Follow-up: WhatsApp chat widget — COMPLETE
+- Confirmed business WhatsApp: +92 345 7163313 (provided by the user).
+- Add a branded, responsive chat panel on every page with an editable message and WhatsApp handoff.
+- Add the confirmed WhatsApp contact to the contact page, verify mobile/keyboard behavior and correct destination, then review this plan.
+
+- WhatsApp review: production build/TypeScript passed. Browser verified correct recipient 923457163313, URL-encoded editable message, Escape close, and mobile fit at 390px with no overflow. Screenshot: `qa/whatsapp-widget.jpg`. This is click-to-chat; visitors send from WhatsApp. No test message was sent.
